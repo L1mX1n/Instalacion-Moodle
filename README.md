@@ -133,4 +133,4 @@ config.vm.network "public_network"
 ```console
 smx2b@turing-116:~$ vi /etc/php/8.1/apache2/php.ini
 ```
-Añadimos esta linia al archivo php_value max_input_vars 5000
+Añadimos esta linia al archivo `php_value max_input_vars = 5000`
