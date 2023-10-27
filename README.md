@@ -96,6 +96,14 @@ smx2b@turing-116:~$ unzip moodle.zip
 ```
 Copiaremos el directorio descompromido y lo borraremos.
 
+#### Añadimos directorio al /var/www/
+Para hacer la instalacion bien, moodle pide un directorio en `/var/www` le damos permisos y se creara automaticamente.
+```console
+cd /var/www/
+chmod -R 775 .
+chown -R root:www-data .
+```
+
 #### Aplicacion de permisos a nuestras aplicaciones web
 Dentro de `/var/www/html` daremos los permisos a los archivos descomprimidos.
 ```console
@@ -106,7 +114,7 @@ chown -R root:www-data .
 ## Activar visibilidad de la web
 Para hacer visible la web, tendremos que modificar algunos parametros en el archivo `vagrantfile`.
 ```console
-vi vagrantfile
+vi Vagrantfile
 ```
 ```console
 # Create a forwarded port mapping which allows access to a specific port
@@ -121,3 +129,8 @@ config.vm.network "forwarded_port", guest: 80, host: 8080
 # your network.
 config.vm.network "public_network"
 ```
+#### Editar archivo `php`
+```console
+smx2b@turing-116:~$ vi /etc/php/8.1/apache2/php.ini
+```
+Añadimos esta linia al archivo php_value max_input_vars 5000
